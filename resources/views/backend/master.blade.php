@@ -58,7 +58,8 @@
         }
     </style>
     @stack('css')
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="{{ asset('css/iziToast.css') }}" rel="stylesheet">
 </head>
 
@@ -111,7 +112,8 @@
     <script type="text/javascript" src="{{ asset('js/customSweetalert2.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
-
+<!-- flowbit js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
     <script src="{{ asset('js/iziToast.js') }}"></script>
 
 {{--    @include('vendor.lara-izitoast.toast')--}}
