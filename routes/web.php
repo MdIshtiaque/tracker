@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\backend\OrderController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\backend\OrderController;
+use App\Http\Controllers\backend\StatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,6 @@ Route::get('/order/create', [OrderController::class, 'create'])->name('orders.cr
 Route::post('/order/create', [OrderController::class, 'store'])->name('orders.store');
 Route::delete('/order/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
 Route::get('/orders/track', [OrderController::class, 'trackOrders'])->name('orders.track');
+
+
+Route::post('/order/status/store', [StatusController::class, 'store'])->name('status.store');

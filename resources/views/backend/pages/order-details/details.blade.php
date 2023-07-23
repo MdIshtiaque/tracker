@@ -207,134 +207,127 @@
                         <div class="row">
                             <div class="col-6 offset-3">
                                 <div class="row my-4 px-4 justify-content-center">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                               id="inlineRadio1" value="option1">
-                                        <label class="form-check-label" for="inlineRadio1">Booking Number</label>
+                                    <form action="" method="get">
+                                        @csrf
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">Booking No</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2">BL No</label>
+                                          </div>
                                     </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                               id="inlineRadio2" value="option2">
-                                        <label class="form-check-label" for="inlineRadio2">BL Number</label>
-                                    </div>
-                                </div>
-                                <form class="">
                                     <div class="input-group ">
-                                        <input type="text" class="form-control" placeholder="Search...">
+                                        <input type="text" class="form-control " name="search" placeholder="Search...">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="submit">Search</button>
+                                        </div>
+                                        <div class="input-group-append" style="margin-left: 5px;">
+                                            <a class="btn btn-primary" href="{{ route('orders.track') }}" type="submit">Reset</a>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                            <div class="mdl-card mdl-shadow--2dp">
+                            @if (isset($datas->id))
+                                <div class="mdl-card mdl-shadow--2dp">
+                                    <div class="mdl-card__supporting-text">
+                                        <div class="mdl-stepper-horizontal-alternative">
+                                            <div class="mdl-stepper-step active-step step-done">
+                                                <div class="mdl-stepper-circle"><span>1</span></div>
+                                                <div class="mdl-stepper-title">Starting Point</div>
+                                                <div class="mdl-stepper-optional">{{ $datas->starting_point }}</div>
+                                                <div class="mdl-stepper-bar-left"></div>
+                                                <div class="mdl-stepper-bar-right"></div>
+                                            </div>
+                                            @if (isset($datas->progress1))
+                                                <div class="mdl-stepper-step active-step editable-step">
+                                                    <div class="mdl-stepper-circle"><span>2</span></div>
+                                                    <div class="mdl-stepper-title">{{ $datas->progress1 }}</div>
+                                                    <div class="mdl-stepper-optional">Optional</div>
+                                                    <div class="mdl-stepper-bar-left"></div>
+                                                    <div class="mdl-stepper-bar-right"></div>
+                                                </div>
+                                            @endif
+                                            @if (isset($datas->progress2))
+                                                <div class="mdl-stepper-step active-step">
+                                                    <div class="mdl-stepper-circle"><span>3</span></div>
+                                                    <div class="mdl-stepper-title">{{ $datas->progress2 }}</div>
+                                                    <div class="mdl-stepper-optional">Optional</div>
+                                                    <div class="mdl-stepper-bar-left"></div>
+                                                    <div class="mdl-stepper-bar-right"></div>
+                                                </div>
+                                            @endif
+                                            <div class="mdl-stepper-step active-step">
+                                                <div class="mdl-stepper-circle"><span>4</span></div>
+                                                <div class="mdl-stepper-title">Destination</div>
+                                                <div class="mdl-stepper-optional">{{ $datas->destination }}</div>
+                                                <div class="mdl-stepper-bar-left"></div>
+                                                <div class="mdl-stepper-bar-right"></div>
+                                            </div>
+                                        </div>
 
-                                <div class="mdl-card__supporting-text">
+                                    </div>
+                                    <div class="table">
+                                        <table id="datatable" class="table table-bordered dt-responsive nowrap"
+                                            style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <thead>
+                                            <tr style="background-color: #9E9E9E">
+                                                <th class="text-center">SL</th>
+                                                <th class="text-center">BL no.</th>
 
-                                    <div class="mdl-stepper-horizontal-alternative">
-                                        <div class="mdl-stepper-step active-step step-done">
-                                            <div class="mdl-stepper-circle"><span>1</span></div>
-                                            <div class="mdl-stepper-title">Add pets</div>
-                                            <div class="mdl-stepper-bar-left"></div>
-                                            <div class="mdl-stepper-bar-right"></div>
-                                        </div>
-                                        <div class="mdl-stepper-step active-step editable-step">
-                                            <div class="mdl-stepper-circle"><span>2</span></div>
-                                            <div class="mdl-stepper-title">Set location</div>
-                                            <div class="mdl-stepper-optional">Optional</div>
-                                            <div class="mdl-stepper-bar-left"></div>
-                                            <div class="mdl-stepper-bar-right"></div>
-                                        </div>
-                                        <div class="mdl-stepper-step active-step">
-                                            <div class="mdl-stepper-circle"><span>3</span></div>
-                                            <div class="mdl-stepper-title">Invite friends</div>
-                                            <div class="mdl-stepper-optional">Optional</div>
-                                            <div class="mdl-stepper-bar-left"></div>
-                                            <div class="mdl-stepper-bar-right"></div>
-                                        </div>
-                                        <div class="mdl-stepper-step">
-                                            <div class="mdl-stepper-circle"><span>4</span></div>
-                                            <div class="mdl-stepper-title">Share</div>
-                                            <div class="mdl-stepper-optional">Optional</div>
-                                            <div class="mdl-stepper-bar-left"></div>
-                                            <div class="mdl-stepper-bar-right"></div>
+                                                <th class="text-center">Booking no.</th>
+                                                <th class="text-center">Starting Point</th>
+                                                <th class="text-center">Destination</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="text-center">
+
+                                            <tr>
+                                                <td>{{ $datas->id }}</td>
+                                                <td>{{ $datas->bl_no }}</td>
+                                                <td>{{ $datas->booking_no }}</td>
+                                                <td>{{ $datas->starting_point }}</td>
+                                                <td>{{ $datas->destination }}</td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="container mt-4">
+                                        <div class="row">
+                                            <!-- Left side column -->
+                                            <div class="col-md-6">
+                                                <p><strong>Vessel Voy No. :</strong> {{ $datas->vessel_voy_no }}</p>
+                                                <p><strong>No. of Packages :</strong> {{ $datas->no_of_packages }}</p>
+                                                <p><strong>On Board Date :</strong> {{ \Carbon\Carbon::createFromFormat('Y-m-d', $datas->on_board_date)->format('jS F, Y') }}</p>
+                                                <p><strong>Gross Cargo Weight :</strong> {{ $datas->gross_cargo_weight }}</p>
+                                            </div>
+                                            <!-- Right side column -->
+                                            <div class="col-md-6">
+                                                <p><strong>No. of Containers (booking quantity) :</strong> {{ $datas->no_of_containers }}</p>
+                                                <p><strong>Measurement :</strong> {{ $datas->measurement }}</p>
+                                                <p><strong>Service Requirement :</strong> {{ $datas->service_requirement }}</p>
+                                            </div>
                                         </div>
                                     </div>
-
-                                </div>
-                                <div class="table">
-                                    <table id="datatable" class="table table-bordered dt-responsive nowrap"
-                                           style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead>
-                                        <tr style="background-color: #9E9E9E">
-                                            <th class="text-center">SL</th>
-                                            <th class="text-center">BL no.</th>
-
-                                            <th class="text-center">Booking no.</th>
-                                            <th class="text-center">Starting Point</th>
-                                            <th class="text-center">Destination</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody class="text-center">
-
-                                        <tr>
-                                            <td>1</td>
-                                            <td>123213</td>
-                                            <td>asdasd</td>
-                                            <td>dasd</td>
-                                            <td>adas</td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="container mt-4">
-                                    <div class="row">
-                                        <!-- Left side column -->
-                                        <div class="col-md-6">
-                                            <p><strong>Vessel Voy No. :</strong> 856842</p>
-                                            <p><strong>No. of Packages :</strong> 100</p>
-                                            <p><strong>On Board Date :</strong> 2023-07-22</p>
-                                            <p><strong>Gross Cargo Weight :</strong> 5000 kg</p>
-                                        </div>
-                                        <!-- Right side column -->
-                                        <div class="col-md-6">
-                                            <p><strong>No. of Containers (booking quantity) :</strong> 5</p>
-                                            <p><strong>Measurement :</strong> 100 m³</p>
-                                            <p><strong>Service Requirement :</strong> Expedited</p>
-                                        </div>
+                                    <div class="wrapper mt-5" >
+                                        <ol class="c-timeline list-group list-group-flush">
+                                            @if(isset($datas->status))
+                                                @foreach ($datas->status->reverse() as $status)
+                                                    <li class="c-timeline__item list-group-item">
+                                                        <div class="c-timeline__content">
+                                                            <h3 class="c-timeline__title" style="font-size: 20px">{{ $status->title }}</h3>
+                                                            <p class="c-timeline__desc">{{ $status->description }}</p>
+                                                        </div>
+                                                        <time class="list-group-item-text">{{ \Carbon\Carbon::parse($status->time)->format('Y-m-d \a\t h:ia') }}</time>
+                                                    </li>
+                                                @endforeach
+                                            @endif
+                                        </ol>
                                     </div>
                                 </div>
-                                <div class="wrapper mt-5" >
-                                    <ol class="c-timeline list-group list-group-flush">
-                                        <li class="c-timeline__item list-group-item">
-                                            <div class="c-timeline__content">
-                                                <h3 class="c-timeline__title" style="font-size: 20px">Design</h3>
-                                                <p class="c-timeline__desc">In Progress</p>
-                                            </div>
-                                            <time class="list-group-item-text">10:03</time>
-                                        </li>
-                                        <li class="c-timeline__item list-group-item">
-                                            <div class="c-timeline__content">
-                                                <h3 class="c-timeline__title" style="font-size: 20px">Development</h3>
-                                                <p class="c-timeline__desc">Todo</p>
-                                            </div>
-                                            <time class="list-group-item-text">10:03</time>
-                                        </li>
-                                        <li class="c-timeline__item list-group-item">
-                                            <div class="c-timeline__content">
-                                                <h3 class="c-timeline__title" style="font-size: 20px">QA Testing</h3>
-                                                <p class="c-timeline__desc">Todo</p>
-                                            </div>
-                                            <time class="list-group-item-text">10:03</time>
-                                        </li>
-                                    </ol>
-                                </div>
-
-
-                            </div>
-
-
+                            @endif
                         </div>
                     </div>
                 </div>

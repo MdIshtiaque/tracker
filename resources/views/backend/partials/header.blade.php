@@ -8,7 +8,6 @@
     <div class="topbar-left">
         <a href="#" class="logo">
             <span class="logo-light">Tracker
-                {{-- <i class="mdi mdi-camera-control"></i> BFSA --}}
             </span>
             <span class="logo-sm">
                 <i class="mdi mdi-camera-control"></i>
@@ -27,7 +26,7 @@
 
             <!-- notification -->
             <li class="dropdown notification-list list-inline-item">
-                <span>emon</span>
+                <span>User</span>
             </li>
 
             <li class="dropdown notification-list list-inline-item">

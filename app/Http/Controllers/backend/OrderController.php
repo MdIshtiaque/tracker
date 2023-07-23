@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RequestOrders;
 use App\Models\Orders;
 use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,10 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Orders::with('status')->orderBy('id', 'desc')->get();
+        $orders = Orders::with(['status' => function($query) {
+            $query->latest()->get();
+        }])->orderBy('id', 'desc')->get();
+
         return view('backend.pages.orders.orders', [
             'orders' => $orders
         ]);
@@ -36,9 +40,19 @@ class OrderController extends Controller
         return redirect()->back();
     }
 
-    public function trackOrders()
+    public function trackOrders(Request $request)
     {
-        return view('backend.pages.order-details.details');
+
+        $datas = [];
+        if($request->inlineRadioOptions == 'option1')
+        {
+            $datas = Orders::with('status')->whereBooking_no($request->search)->first();
+        }
+        if($request->inlineRadioOptions == 'option2')
+        {
+            $datas = Orders::with('status')->whereBl_no($request->search)->first();
+        }
+        return view('backend.pages.order-details.details', ['datas' => $datas]);
     }
 
     public function destroy(Orders $order)
