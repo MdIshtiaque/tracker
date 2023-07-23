@@ -230,6 +230,9 @@
                                 </form>
                             </div>
                             @if (isset($datas->id))
+                                <div class="col-6 offset-2 pt-5">
+                                    <span><p style="font-size: 1.1rem"><strong>Routing : </strong></p></span>
+                                </div>
                                 <div class="mdl-card mdl-shadow--2dp">
                                     <div class="mdl-card__supporting-text">
                                         <div class="mdl-stepper-horizontal-alternative">
@@ -241,7 +244,7 @@
                                                 <div class="mdl-stepper-bar-right"></div>
                                             </div>
                                             @if (isset($datas->progress1))
-                                                <div class="mdl-stepper-step active-step editable-step">
+                                                <div class="mdl-stepper-step active-step step-done">
                                                     <div class="mdl-stepper-circle"><span>2</span></div>
                                                     <div class="mdl-stepper-title">{{ $datas->progress1 }}</div>
                                                     <div class="mdl-stepper-optional">Optional</div>
@@ -250,7 +253,7 @@
                                                 </div>
                                             @endif
                                             @if (isset($datas->progress2))
-                                                <div class="mdl-stepper-step active-step">
+                                                <div class="mdl-stepper-step active-step step-done">
                                                     <div class="mdl-stepper-circle"><span>3</span></div>
                                                     <div class="mdl-stepper-title">{{ $datas->progress2 }}</div>
                                                     <div class="mdl-stepper-optional">Optional</div>
@@ -258,7 +261,7 @@
                                                     <div class="mdl-stepper-bar-right"></div>
                                                 </div>
                                             @endif
-                                            <div class="mdl-stepper-step active-step">
+                                            <div class="mdl-stepper-step active-step step-done">
                                                 <div class="mdl-stepper-circle"><span>4</span></div>
                                                 <div class="mdl-stepper-title">Destination</div>
                                                 <div class="mdl-stepper-optional">{{ $datas->destination }}</div>
