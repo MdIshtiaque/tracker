@@ -15,4 +15,9 @@ class Orders extends Model
     {
         return $this->hasMany(OrderStatus::class);
     }
+
+    public function currentPort()
+    {
+        return $this->belongsTo(CurrentPort::class, 'id', 'orders_id');
+    }
 }

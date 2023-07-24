@@ -27,3 +27,5 @@ Route::get('/orders/track', [OrderController::class, 'trackOrders'])->name('orde
 
 
 Route::post('/order/status/store', [StatusController::class, 'store'])->name('status.store');
+
+Route::post('/current-port', [OrderController::class, 'currentPort'])->name('set.port');

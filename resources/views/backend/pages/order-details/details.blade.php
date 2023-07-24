@@ -202,138 +202,292 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
-                    <div class="card m-b-30 p-5" style="min-height: 70vh">
-                        <div class="row">
-                            <div class="col-6 offset-3">
-                                <div class="row my-4 px-4 justify-content-center">
-                                    <form action="" method="get">
-                                        @csrf
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                            <label class="form-check-label" for="inlineRadio1">Booking No</label>
-                                          </div>
-                                          <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                            <label class="form-check-label" for="inlineRadio2">BL No</label>
-                                          </div>
+
+                        <div class="container mx-auto">
+                            <form class="flex flex-col items-center" action="" method="get">
+                                @csrf
+                                <!-- Radio buttons -->
+                                <div class="flex mb-3">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="inlineRadio1" value="option1">
+                                        <label class="form-check-label" for="inlineRadio1">Booking No</label>
                                     </div>
-                                    <div class="input-group ">
-                                        <input type="text" class="form-control " name="search" placeholder="Search...">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="submit">Search</button>
-                                        </div>
-                                        <div class="input-group-append" style="margin-left: 5px;">
-                                            <a class="btn btn-primary" href="{{ route('orders.track') }}" type="submit">Reset</a>
-                                        </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="inlineRadio2" value="option2">
+                                        <label class="form-check-label" for="inlineRadio2">BL No</label>
                                     </div>
-                                </form>
-                            </div>
-                            @if (isset($datas->id))
-                                <div class="col-6 offset-2 pt-5">
-                                    <span><p style="font-size: 1.1rem"><strong>Routing : </strong></p></span>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="inlineRadio3" value="option3">
+                                        <label class="form-check-label" for="inlineRadio2">Container No.</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="inlineRadio4" value="option4">
+                                        <label class="form-check-label" for="inlineRadio4">P/O</label>
+                                    </div>
                                 </div>
-                                <div class="mdl-card mdl-shadow--2dp">
-                                    <div class="mdl-card__supporting-text">
-                                        <div class="mdl-stepper-horizontal-alternative">
-                                            <div class="mdl-stepper-step active-step step-done">
-                                                <div class="mdl-stepper-circle"><span>1</span></div>
-                                                <div class="mdl-stepper-title">Starting Point</div>
-                                                <div class="mdl-stepper-optional">{{ $datas->starting_point }}</div>
-                                                <div class="mdl-stepper-bar-left"></div>
-                                                <div class="mdl-stepper-bar-right"></div>
+                                <div class="relative w-full">
+                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                             viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2"
+                                             stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="11" cy="11" r="8"></circle>
+                                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                        </svg>
+                                    </div>
+                                    <input type="text" name="search" id="simple-search"
+                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                                           placeholder="Search here..." required>
+                                </div>
+                                <div class="flex mt-2">
+                                    <button type="submit"
+                                            class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                        Search
+                                    </button>
+                                    <a type="submit" href="{{ route('orders.track') }}"
+                                       class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-teal-700 rounded-lg border border-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300">
+                                        Reset
+                                    </a>
+                                </div>
+                            </form>
+                            <!-- routing -->
+                            @if (isset($datas->id))
+                                @php
+                                    if($datas->currentPort->current_port == $datas->starting_point)
+                                        {
+                                             $active = 1;
+                                        }
+                                    if($datas->currentPort->current_port == $datas->progress1)
+                                        {
+                                             $active = 2;
+                                        }
+                                    if($datas->currentPort->current_port == $datas->progress2)
+                                        {
+                                             $active = 3;
+                                        }
+                                    if($datas->currentPort->current_port == $datas->destination)
+                                        {
+                                             $active = 4;
+                                        }
+                                @endphp
+                                <p class="text-xl mt-3 font-semibold">Tracking Result</p>
+                                <div class="">
+                                    <div class="mx-4 p-4">
+                                        <div class="flex items-center">
+                                            <div
+                                                class="flex items-center {{ $active >= 1 ? 'text-white' : ''}} relative">
+                                                <div
+                                                    class="rounded-full transition duration-500 ease-in-out h-12 w-12 py-3 border-2 {{ $active >= 1 ? 'bg-teal-600' : ''}} {{ $active >= 1 ? 'border-teal-600' : 'border-gray-300'}}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+                                                         fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                         class="feather feather-bookmark ">
+                                                        <path
+                                                            d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                                    </svg>
+                                                </div>
+
+                                                <div class=" text-xs font-medium capitalize text-teal-600 px-2">
+                                                    Starting Point
+                                                </div>
+                                                <div
+                                                    class="absolute top-0 -ml-10 text-center mt-16 w-32 text-xs font-medium uppercase text-teal-600">
+                                                    {{ $datas->starting_point }}
+                                                </div>
                                             </div>
                                             @if (isset($datas->progress1))
-                                                <div class="mdl-stepper-step active-step step-done">
-                                                    <div class="mdl-stepper-circle"><span>2</span></div>
-                                                    <div class="mdl-stepper-title">{{ $datas->progress1 }}</div>
-                                                    <div class="mdl-stepper-optional">Optional</div>
-                                                    <div class="mdl-stepper-bar-left"></div>
-                                                    <div class="mdl-stepper-bar-right"></div>
+                                                <div
+                                                    class="flex-auto border-t-2 transition duration-500 ease-in-out {{ $active >= 2 ? 'border-teal-600' : 'border-gray-300'}}"></div>
+                                                <div
+                                                    class="flex items-center {{ $active >= 2 ? 'text-white' : ''}} relative">
+                                                    <div
+                                                        class="rounded-full transition duration-500 ease-in-out h-12 w-12 py-3 border-2 {{ $active >= 2 ? 'bg-teal-600' : ''}} border-teal-600">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%"
+                                                             height="100%"
+                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                             stroke-width="2" stroke-linecap="round"
+                                                             stroke-linejoin="round"
+                                                             class="feather feather-user-plus ">
+                                                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                            <circle cx="8.5" cy="7" r="4"></circle>
+                                                            <line x1="20" y1="8" x2="20" y2="14"></line>
+                                                            <line x1="23" y1="11" x2="17" y2="11"></line>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="px-2 text-xs font-medium capitalize text-teal-600">
+                                                        Progress 1
+                                                    </div>
+                                                    <div
+                                                        class="absolute top-0 -ml-10 text-center mt-16 w-32 text-xs font-medium uppercase text-teal-600">
+                                                        {{ $datas->progress1 }}
+                                                    </div>
+
                                                 </div>
                                             @endif
                                             @if (isset($datas->progress2))
-                                                <div class="mdl-stepper-step active-step step-done">
-                                                    <div class="mdl-stepper-circle"><span>3</span></div>
-                                                    <div class="mdl-stepper-title">{{ $datas->progress2 }}</div>
-                                                    <div class="mdl-stepper-optional">Optional</div>
-                                                    <div class="mdl-stepper-bar-left"></div>
-                                                    <div class="mdl-stepper-bar-right"></div>
+                                                <div
+                                                    class="flex-auto border-t-2 transition duration-500 ease-in-out {{ $active >= 3 ? 'border-teal-600' : 'border-gray-300'}}"></div>
+                                                <div
+                                                    class="flex items-center {{ $active >= 3 ? 'text-white' : ''}} relative">
+                                                    <div
+                                                        class="rounded-full transition duration-500 ease-in-out h-12 w-12 py-3 border-2 {{ $active >= 3 ? 'bg-teal-600' : ''}} border-gray-300">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%"
+                                                             height="100%"
+                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                             stroke-width="2" stroke-linecap="round"
+                                                             stroke-linejoin="round"
+                                                             class="feather feather-mail ">
+                                                            <path
+                                                                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                                            <polyline points="22,6 12,13 2,6"></polyline>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="px-2 text-xs font-medium uppercase text-gray-500">
+                                                        Progress 2
+                                                    </div>
+                                                    <div
+                                                        class="absolute top-0 -ml-10 text-center mt-16 w-32 text-xs font-medium uppercase text-gray-500">
+                                                        {{ $datas->progress2 }}
+                                                    </div>
                                                 </div>
                                             @endif
-                                            <div class="mdl-stepper-step active-step step-done">
-                                                <div class="mdl-stepper-circle"><span>4</span></div>
-                                                <div class="mdl-stepper-title">Destination</div>
-                                                <div class="mdl-stepper-optional">{{ $datas->destination }}</div>
-                                                <div class="mdl-stepper-bar-left"></div>
-                                                <div class="mdl-stepper-bar-right"></div>
+                                            <div
+                                                class="flex-auto border-t-2 transition duration-500 ease-in-out {{ $active >= 4 ? 'border-teal-600' : 'border-gray-300'}}"></div>
+                                            <div
+                                                class="flex items-center {{ $active >= 4 ? 'text-white' : ''}} relative">
+                                                <div
+                                                    class="rounded-full transition duration-500 ease-in-out h-12 w-12 py-3 border-2 {{ $active >= 4 ? 'bg-teal-600' : ''}} border-gray-300">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+                                                         fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                         class="feather feather-database ">
+                                                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                                                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="px-2 text-xs font-medium uppercase text-gray-500">
+                                                    Destination
+                                                </div>
+                                                <div
+                                                    class="absolute top-0 -ml-10 text-center mt-16 w-32 text-xs font-medium uppercase text-gray-500">
+                                                    {{ $datas->destination }}
+                                                </div>
                                             </div>
                                         </div>
-
                                     </div>
-                                    <div class="table">
-                                        <table id="datatable" class="table table-bordered dt-responsive nowrap"
-                                            style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead>
-                                            <tr style="background-color: #9E9E9E">
-                                                <th class="text-center">SL</th>
-                                                <th class="text-center">BL no.</th>
 
-                                                <th class="text-center">Booking no.</th>
-                                                <th class="text-center">Starting Point</th>
-                                                <th class="text-center">Destination</th>
+
+                                    <div class="relative overflow-x-auto my-10">
+                                        <table class="w-full text-sm text-left text-gray-500 border rounded-xl ">
+                                            <thead class="text-base text-gray-700 capitalize bg-slate-100">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3">
+                                                    sl no
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    bl no
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    booking no
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    starting point
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    destination
+                                                </th>
                                             </tr>
                                             </thead>
-                                            <tbody class="text-center">
-
-                                            <tr>
-                                                <td>{{ $datas->id }}</td>
-                                                <td>{{ $datas->bl_no }}</td>
-                                                <td>{{ $datas->booking_no }}</td>
-                                                <td>{{ $datas->starting_point }}</td>
-                                                <td>{{ $datas->destination }}</td>
+                                            <tbody>
+                                            <tr class="bg-white border-b ">
+                                                <th scope="row"
+                                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                    {{ $datas->id }}
+                                                </th>
+                                                <td class="px-6 py-4">
+                                                    {{ $datas->bl_no }}
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    {{ $datas->booking_no }}
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    {{ $datas->starting_point }}
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    {{ $datas->destination }}
+                                                </td>
                                             </tr>
-
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="container mt-4">
-                                        <div class="row">
-                                            <!-- Left side column -->
-                                            <div class="col-md-6">
-                                                <p><strong>Vessel Voy No. :</strong> {{ $datas->vessel_voy_no }}</p>
-                                                <p><strong>No. of Packages :</strong> {{ $datas->no_of_packages }}</p>
-                                                <p><strong>On Board Date :</strong> {{ \Carbon\Carbon::createFromFormat('Y-m-d', $datas->on_board_date)->format('jS F, Y') }}</p>
-                                                <p><strong>Gross Cargo Weight :</strong> {{ $datas->gross_cargo_weight }}</p>
-                                            </div>
-                                            <!-- Right side column -->
-                                            <div class="col-md-6">
-                                                <p><strong>No. of Containers (booking quantity) :</strong> {{ $datas->no_of_containers }}</p>
-                                                <p><strong>Measurement :</strong> {{ $datas->measurement }}</p>
-                                                <p><strong>Service Requirement :</strong> {{ $datas->service_requirement }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wrapper mt-5" >
-                                        <ol class="c-timeline list-group list-group-flush">
+
+                                    <div class="flex items-center gap-10 justify-between">
+
+                                        <ol class="relative text-gray-500 border-l border-gray-200 my-10">
                                             @if(isset($datas->status))
                                                 @foreach ($datas->status->reverse() as $status)
-                                                    <li class="c-timeline__item list-group-item">
-                                                        <div class="c-timeline__content">
-                                                            <h3 class="c-timeline__title" style="font-size: 20px">{{ $status->title }}</h3>
-                                                            <p class="c-timeline__desc">{{ $status->description }}</p>
-                                                        </div>
-                                                        <time class="list-group-item-text">{{ \Carbon\Carbon::parse($status->time)->format('Y-m-d \a\t h:ia') }}</time>
+                                                    <li class=" ml-6 {{  $loop->last ? '' : 'mb-10'  }}">
+                                                        <span
+                                                            class="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -left-4 ring-4 ring-white ">
+                                                            <svg class="w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true"
+                                                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                      d="M1 5.917 5.724 10.5 15 1.5"/>
+                                                            </svg>
+                                                        </span>
+                                                        <h3 class="font-medium leading-tight">{{ $status->title }}</h3>
+                                                        <p class="text-sm">{{ $status->description }}</p>
                                                     </li>
                                                 @endforeach
                                             @endif
                                         </ol>
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                                            <div
+                                                class="bg-slate-50 border border-zinc-50 px-4 py-2 flex items-center rounded-lg">
+                                                <p><strong>Vessel Voy No. :</strong> {{ $datas->vessel_voy_no }}</p>
+                                            </div>
+                                            <div
+                                                class="bg-slate-50 border border-zinc-50 px-4 py-2 flex items-center rounded-lg">
+                                                <p><strong>No. of Containers (booking quantity)
+                                                        :</strong> {{ $datas->no_of_containers }}</p>
+                                            </div>
+                                            <div
+                                                class="bg-slate-50 border border-zinc-50 px-4 py-2 flex items-center rounded-lg">
+                                                <p><strong>No. of Packages :</strong> {{ $datas->no_of_packages }}</p>
+                                            </div>
+                                            <div
+                                                class="bg-slate-50 border border-zinc-50 px-4 py-2 flex items-center rounded-lg">
+                                                <p><strong>Measurement :</strong> {{ $datas->measurement }}</p>
+                                            </div>
+                                            <div
+                                                class="bg-slate-50 border border-zinc-50 px-4 py-2 flex items-center rounded-lg">
+                                                <p><strong>On Board Date
+                                                        :</strong> {{ \Carbon\Carbon::createFromFormat('Y-m-d', $datas->on_board_date)->format('jS F, Y') }}
+                                                </p>
+                                            </div>
+                                            <div
+                                                class="bg-slate-50 border border-zinc-50 px-4 py-2 flex items-center rounded-lg">
+                                                <p><strong>Service Requirement
+                                                        :</strong> {{ $datas->service_requirement }}</p>
+                                            </div>
+                                            <div
+                                                class="bg-slate-50 border border-zinc-50 px-4 py-2 col-span-3 flex items-center rounded-lg">
+                                                <p><strong>Gross Cargo Weight
+                                                        :</strong> {{ $datas->gross_cargo_weight }}</p>
+                                            </div>
+                                        </div>
                                     </div>
+
+
                                 </div>
                             @endif
                         </div>
-                    </div>
-                </div>
+
+
             </div>
         </div>
     </div>
