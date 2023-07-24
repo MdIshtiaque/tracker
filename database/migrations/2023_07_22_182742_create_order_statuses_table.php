@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('orders_id')->constrained('orders')->onDelete('cascade');
             $table->string('title');
             $table->text('description');
-            $table->timestamp('time')->nullable();
+            $table->date('time')->nullable();
             $table->timestamps();
         });
     }

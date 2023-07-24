@@ -35,6 +35,14 @@ class RequestOrders extends FormRequest
             'service_requirement' => 'required|string|max:255',
             'progress1' => 'nullable|string|max:255',
             'progress2' => 'nullable|string|max:255',
+            'container_no' => 'required|string|max:255',
+            'size' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'seal_no' => 'required|string|max:255',
+            'moveType' => 'required|string|max:255',
+            'latest_event' => 'required|string|max:255',
+            'place' => 'required|string|max:255',
+            'vgm' => 'required'
         ];
     }
 }

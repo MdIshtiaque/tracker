@@ -22,6 +22,11 @@
                                    title="description" placeholder="Enter description"
                                    class="form-control input-style small-text-12 py-2" />
                         </div>
+                        <div class="mb-3">
+                            <input type="date" name="time" value="{{ old('time') }}"
+                            placeholder="Select  Date"
+                            class="form-control input-style small-text-12 py-2" id="on_board_date"/>
+                        </div>
                         <div class="view-all-btn">
                             <button type="submit"
                                     class="small-text-12 collect-btn w-100 result-entry-btn py-2 btn btn-sm btn-info show">

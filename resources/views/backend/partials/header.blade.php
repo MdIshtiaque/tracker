@@ -1,6 +1,7 @@
 <!-- Top Bar Start -->
 <div class="topbar">
     <!-- LOGO -->
+    {{-- <img src="{{ asset('backend/assets/images/footer-logo.png') }}" height="20px" width="" alt=""> --}}
     @php
 
     @endphp
@@ -10,7 +11,7 @@
             <span class="logo-light">Tracker
             </span>
             <span class="logo-sm">
-                <i class="mdi mdi-camera-control"></i>
+
             </span>
         </a>
     </div>

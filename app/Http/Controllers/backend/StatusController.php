@@ -12,13 +12,13 @@ class StatusController extends Controller
 {
     public function store(Request $request)
     {
-        date_default_timezone_set('Asia/Dhaka');
+        // date_default_timezone_set('Asia/Dhaka');
         try{
             OrderStatus::create([
                 'orders_id' => $request->orders_id,
                 'title' => $request->title,
                 'description' => $request->description,
-                'time' => Carbon::now()
+                'time' => $request->time
             ]);
             flash()->addSuccess('Status Added Successfully!!');
         }catch(Exception $exception)

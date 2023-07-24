@@ -77,8 +77,12 @@ class OrderController extends Controller
         {
             $datas = Orders::with('status', 'currentPort')->whereBl_no($request->search)->first();
         }
+        if($request->inlineRadioOptions == 'option3')
+        {
+            $datas = Orders::with('status', 'currentPort')->whereContainer_no($request->search)->first();
+        }
 
-        return view('backend.pages.order-details.details', ['datas' => $datas]);
+        return view('backend.pages.order-details.details', ['datas' => $datas, 'request' => $request]);
     }
 
     public function destroy(Orders $order)

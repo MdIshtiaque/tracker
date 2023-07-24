@@ -26,6 +26,16 @@ return new class extends Migration
             $table->string('service_requirement');
             $table->string('progress1')->nullable();
             $table->string('progress2')->nullable();
+            $table->string('container_no');
+            $table->string('size');
+            $table->string('type');
+            $table->string('seal_no');
+            $table->string('moveType');
+            $table->string('latest_event');
+            $table->string('place');
+            $table->string('vgm');
+
+
             $table->timestamps();
         });
     }
