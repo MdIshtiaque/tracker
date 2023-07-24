@@ -407,10 +407,10 @@
                                             </tbody>
                                         </table>
                                     </div>
-
-                                    <div class="flex items-center gap-10 justify-between">
-                                        <p class="text-xl mb-3 font-semibold">Route scheduling</p>
-                                        <ol class="relative text-gray-500 border-l border-gray-200 my-10">
+                                    <p class="text-xl mb-3 font-semibold">Route scheduling</p>
+                                    <div class="grid grid-cols-3 items-start gap-10 mt-10">
+                                       
+                                        <ol class="relative text-gray-500 border-l border-gray-200 col-span-1">
                                             @if(isset($datas->status))
                                                 @foreach ($datas->status->reverse() as $status)
                                                     <li class="{{ $loop->last ? '' : 'mb-8' }} ml-6">
@@ -430,7 +430,7 @@
                                                 @endforeach
                                             @endif
                                         </ol>
-                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 col-span-2">
                                             <div
                                                 class="bg-slate-50 border border-zinc-50 px-4 py-2 flex items-center rounded-lg">
                                                 <p><strong>Vessel Voy No. :</strong> {{ $datas->vessel_voy_no }}</p>
