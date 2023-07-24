@@ -191,7 +191,7 @@
 @endpush
 @section('content')
     <div class="content">
-        <div class="content">
+        <div class="content bg-gradient-to-r from-slate-50 via-purple-50 to-zinc-50">
             <div class="container-fluid">
                 <div class="page-title-box">
                     <div class="row align-items-center">
