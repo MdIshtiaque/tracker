@@ -256,6 +256,8 @@
                             <!-- routing -->
                             @if (isset($datas->id))
                                 @php
+                                $active = 0;
+                                if (isset($datas->currentPort)){
                                     if($datas->currentPort->current_port == $datas->starting_point)
                                         {
                                              $active = 1;
@@ -272,6 +274,7 @@
                                         {
                                              $active = 4;
                                         }
+                                    }
                                 @endphp
                                 <p class="text-xl mt-3 font-semibold">Tracking Result</p>
                                 <div class="">
@@ -409,7 +412,7 @@
                                     </div>
                                     <p class="text-xl mb-3 font-semibold">Route scheduling</p>
                                     <div class="grid grid-cols-3 items-start gap-10 mt-10">
-                                       
+
                                         <ol class="relative text-gray-500 border-l border-gray-200 col-span-1">
                                             @if(isset($datas->status))
                                                 @foreach ($datas->status->reverse() as $status)

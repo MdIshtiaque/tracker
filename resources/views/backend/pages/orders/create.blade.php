@@ -140,13 +140,14 @@
             </div>
 
         </div>
-        <div class="sd">
-            <div class="col-md-4 flex justify-content-start">
-                <!-- Center the button using the 'mx-auto' class -->
-                <button type="submit" class="inline-flex items-center py-2 px-3 ml-2 text-sm font-medium text-white bg-green-700 rounded-lg border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
-                    Save
-                </button>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="fd-flex align-items-center mb-4">
+{{--                <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">--}}
+{{--                <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 ">You are agreed to our terms and conditions</label>--}}
             </div>
+
+            <button type="submit" class="bg-green-600  px-4 text-white hover:bg-green-700 rounded-lg py-2 float-right">Save</button>
+
         </div>
     </form>
 </div>
@@ -219,21 +220,21 @@
 {{--                   class="form-control input-style small-text-12 py-2"/>--}}
 {{--        </div>--}}
 {{--        <div class="view-all-btn clearfix">--}}
-  
+
 {{--            <button type="submit"--}}
 {{--                    class="small-text-12 collect-btn w-100 result-entry-btn float-right py-2 btn btn-sm btn-info show">--}}
 {{--                Save--}}
 {{--            </button>--}}
 {{--        </div>--}}
-<div class="d-flex justify-content-between align-items-center">
-<div class="fd-flex align-items-center mb-4">
-    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
-    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 ">You are agreed to our terms and conditions</label>
-</div>
-      
-    <button type="button" class="bg-green-600  px-4 text-white hover:bg-green-700 rounded-lg py-2 float-right">Save</button>
-    
-</div>
+{{--<div class="d-flex justify-content-between align-items-center">--}}
+{{--<div class="fd-flex align-items-center mb-4">--}}
+{{--    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">--}}
+{{--    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 ">You are agreed to our terms and conditions</label>--}}
+{{--</div>--}}
+
+{{--    <button type="button" class="bg-green-600  px-4 text-white hover:bg-green-700 rounded-lg py-2 float-right">Save</button>--}}
+
+{{--</div>--}}
 {{--    </form>--}}
 {{--</div>--}}
 

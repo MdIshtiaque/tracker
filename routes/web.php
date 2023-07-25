@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\OrderController;
 use App\Http\Controllers\backend\StatusController;
@@ -15,10 +16,8 @@ use App\Http\Controllers\backend\StatusController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/order/create', [OrderController::class, 'create'])->name('orders.create');
 Route::post('/order/create', [OrderController::class, 'store'])->name('orders.store');

@@ -26,7 +26,7 @@
 
                         <div class="view-all-btn">
                             <button type="submit"
-                                    class="small-text-12 collect-btn w-100 result-entry-btn py-2 btn btn-sm btn-info show">
+                                    class="small-text-12 collect-btn w-100 result-entry-btn py-2 btn btn-sm btn-info show bg-green-600  text-white hover:bg-green-700">
                                 Change
                             </button>
                         </div>
