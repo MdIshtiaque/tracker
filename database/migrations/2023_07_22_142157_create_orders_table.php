@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('starting_point');
             $table->string('destination');
             $table->string('vessel_voy_no');
-            $table->integer('no_of_packages');
+            $table->string('no_of_packages');
             $table->date('on_board_date');
             $table->string('gross_cargo_weight');
-            $table->integer('no_of_containers');
+            $table->string('no_of_containers');
             $table->string('measurement');
             $table->string('service_requirement');
             $table->string('progress1')->nullable();

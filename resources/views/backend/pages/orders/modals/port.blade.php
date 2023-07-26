@@ -14,7 +14,7 @@
                         @csrf
                         <div class="mb-3">
                             <input type="text" name="orders_id" value="{{ $order->id }}" hidden>
-                            <select name="current_port" class="form-control input-style small-text-12 py-2">
+                            <select name="current_port" class="form-control input-style small-text-12 py-2" required>
                                 <option value="" selected disabled>Select a title</option>
                                 <option value="{{ $order->starting_point }}" >{{ $order->starting_point }}</option>
                                 <option value="{{ $order->progress1 }}">{{ $order->progress1 }}</option>

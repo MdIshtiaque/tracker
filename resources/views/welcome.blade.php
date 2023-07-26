@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>user home</title>
+    <link rel="icon" href="https://marinerx.co.uk/assets/images/favicon.png" type="image/x-icon">
+    <title>MarinerX - UK Transportation & Logistics Service</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -28,10 +29,10 @@
 
 <nav class="bg-white border-gray-200 sticky top-0 left-0 w-full z-50">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-center px-20 mx-auto p-4">
-   
+
         <a href="http://marinerx.co.uk/assets/images/footer-logo.png" class="flex items-center">
             <img src="http://marinerx.co.uk/assets/images/logo.png" class="h-10 mr-3" alt="Flowbite Logo"/>
-           
+
         </a>
 
     </div>
@@ -61,7 +62,7 @@
                 <input class="form-check-input" type="radio" name="inlineRadioOptions"
                        id="inlineRadio3"
                        value="option3" {{ $request->inlineRadioOptions == 'option3' ? 'checked' : ''}}>
-                <label class="form-check-label" for="inlineRadio2">Container No.</label>
+                <label class="form-check-label" for="inlineRadio3">Container No.</label>
             </div>
             <div class="form-check form-check-inline" style="padding-right: 10px">
                 <input class="form-check-input" type="radio" name="inlineRadioOptions"
@@ -96,7 +97,14 @@
     </form>
     <!-- routing -->
 
-
+    @if($isSearch === true && !isset($datas->id))
+        <p class="text-xl mt-3 font-semibold">Tracking Result</p>
+        <div class="">
+            <div class="mx-4 p-4">
+                <h1 class="flex justify-center pt-10" style="font-size: 3rem">No Result Found</h1>
+            </div>
+        </div>
+    @endif
     @if (isset($datas->id))
         <p class="text-xl my-10 font-semibold text-center">Tracking Result</p>
         @php

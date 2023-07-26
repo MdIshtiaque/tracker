@@ -49,8 +49,30 @@
                                         <td>{{ $order->booking_no }}</td>
                                         <td>{{ $order->starting_point }}</td>
                                         <td>{{ $order->destination }}</td>
-                                        <td>{{ $order->status->first()->title ?? '' }}</td>
-                                        <td>{{ $order->currentPort->current_port ?? '' }}</td>
+                                        <td>
+                                            @if (empty($order->status->first()->title))
+                                                <button type="button" class="inline-flex items-center py-2 px-3 ml-2 text-sm font-medium text-white
+                                                             bg-red-700 rounded-lg border border-red-700 hover:bg-red-800 focus:ring-4
+                                                              focus:outline-none focus:ring-red-300" disabled>No Status</button>
+                                            @else
+                                                <button type="button" class="inline-flex items-center py-2 px-3 ml-2 text-sm font-medium text-white
+                                                             bg-green-700 rounded-lg border border-green-700 hover:bg-green-800 focus:ring-4
+                                                              focus:outline-none focus:ring-green-300" disabled>{{ $order->status->first()->title }}</button>
+
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if (empty($order->currentPort->current_port))
+                                                <button type="button" class="inline-flex items-center py-2 px-3 ml-2 text-sm font-medium text-white
+                                                             bg-red-700 rounded-lg border border-red-700 hover:bg-red-800 focus:ring-4
+                                                              focus:outline-none focus:ring-red-300" disabled>Please Set a Port</button>
+                                            @else
+                                                <button type="button" class="inline-flex items-center py-2 px-3 ml-2 text-sm font-medium text-white
+                                                             bg-green-700 rounded-lg border border-green-700 hover:bg-green-800 focus:ring-4
+                                                              focus:outline-none focus:ring-green-300" disabled>{{ $order->currentPort->current_port }}</button>
+
+                                            @endif
+                                        </td>
                                         <td>
                                             <div>
                                                 <button type="button" data-bs-toggle="modal"
@@ -90,8 +112,15 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            <!-- pagination -->
+
                         </div>
                     </div>
+                            @if ($orders->hasPages())
+                                <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+                                    {{ $orders->links() }}
+                                </div>
+                            @endif
                 </div> <!-- end col -->
             </div> <!-- end row -->
         </div>

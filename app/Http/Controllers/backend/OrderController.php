@@ -18,7 +18,7 @@ class OrderController extends Controller
 
         $orders = Orders::with('currentPort')->with(['status' => function($query) {
             $query->latest()->get();
-        }])->orderBy('id', 'desc')->get();
+        }])->orderBy('id', 'desc')->paginate(10);
 //        dd($orders);
         return view('backend.pages.orders.orders', [
             'orders' => $orders
@@ -69,20 +69,24 @@ class OrderController extends Controller
     public function trackOrders(Request $request)
     {
         $datas = [];
+        $isSearch = false;
         if($request->inlineRadioOptions == 'option1')
         {
+            $isSearch = true;
             $datas = Orders::with('status', 'currentPort')->whereBooking_no($request->search)->first();
         }
         if($request->inlineRadioOptions == 'option2')
         {
+            $isSearch = true;
             $datas = Orders::with('status', 'currentPort')->whereBl_no($request->search)->first();
         }
         if($request->inlineRadioOptions == 'option3')
         {
+            $isSearch = true;
             $datas = Orders::with('status', 'currentPort')->whereContainer_no($request->search)->first();
         }
 
-        return view('backend.pages.order-details.details', ['datas' => $datas, 'request' => $request]);
+        return view('backend.pages.order-details.details', ['datas' => $datas, 'request' => $request, 'isSearch' => $isSearch]);
     }
 
     public function destroy(Orders $order)

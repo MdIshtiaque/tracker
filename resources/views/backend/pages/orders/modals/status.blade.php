@@ -14,16 +14,16 @@
                         @csrf
                         <div class="mb-3">
                             <input type="text" name="orders_id" value="{{ $order->id }}" hidden>
-                            <input type="text" name="title" value="{{ old('title') }}" title="title"
+                            <input type="text" name="title" value="{{ old('title') }}" required title="title"
                                    placeholder="Enter title" class="form-control input-style small-text-12 py-2" />
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="description" value="{{ old('description') }}"
+                            <input type="text" name="description" value="{{ old('description') }}" required
                                    title="description" placeholder="Enter description"
                                    class="form-control input-style small-text-12 py-2" />
                         </div>
                         <div class="mb-3">
-                            <input type="date" name="time" value="{{ old('time') }}"
+                            <input type="date" name="time" value="{{ old('time') }}" required
                             placeholder="Select  Date"
                             class="form-control input-style small-text-12 py-2" id="on_board_date"/>
                         </div>

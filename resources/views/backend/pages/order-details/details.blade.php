@@ -254,6 +254,14 @@
                                 </div>
                             </form>
                             <!-- routing -->
+                            @if($isSearch === true && !isset($datas->id))
+                                <p class="text-xl mt-3 font-semibold">Tracking Result</p>
+                                <div class="">
+                                    <div class="mx-4 p-4">
+                                        <h1 class="flex justify-content-center pt-10" style="font-size: 3rem">No Result Found</h1>
+                                    </div>
+                                </div>
+                            @endif
                             @if (isset($datas->id))
                                 @php
                                 $active = 0;
